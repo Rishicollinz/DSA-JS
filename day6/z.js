@@ -1,7 +1,7 @@
 //this is implementation of z algorithm
-let pattern="baba";
+let pattern ="AABA";
 console.log("Pattern: "+pattern+"\n");
-let text="baababa";
+let text ="AABAACAADAABAABA";
 console.log("Text: " + text + "\n");
 let concStr=pattern+"$"+text;
 console.log("Concatenated String: " + concStr + "\n");
@@ -35,6 +35,6 @@ let res;
 for(let i=0;i<z.length;i++){
     if(z[i]==pattern.length){
         res=(i-pattern.length-1);//i - pattern len - $;
+        console.log("The pattern is found at the index of text:" + res);
     }
 }
-console.log("The pattern is found at the index of text:"+res);
