@@ -1,0 +1,299 @@
+1.Datatypes:=6/2/24
+============
+
+1.1: Primitive Datatypes:
+=========================
+1.All the primitive datatypes are primitive in js.
+2.Primitive is lightweight and fast but each primitive(string...) may have inbuilt functions.
+3.All functions are objects and objects are heavyweight.
+4.To solve this, In JS, a object wrapper is wrapped around datatypes.
+5.This wrapper has inbuilt functions upon executing its functions, it is destroyed.
+
+1.2: Number:
+============
+
+1.2.1.use 'e':
+==========
+
+->For positive:
+        ->let a=100000; can be represented as 1e5(5 zeros 1*10000);
+->For negative:
+        ->let a=0.00005; can be represented as 1e-5(5 zeros before 1/10000 );
+
+1.2.2.Hex num:= 0xff//255 as num
+1.2.3.Binary num:=0b11111111//255 as num
+1.2.4.Octal num:=0o377//255 as num
+
+1.2.5:toString(base):
+=====================
+->It is used to convert num to its specific base.
+->By default, num is base=10
+
+->let a=255;
+    a.toString(8//16//2//10//32)(//octal//hexdec//binary//decimal//for url)
+
+    for directly using num:
+    255..toString(use double decimal bcoz single decimal means float value);
+
+1.2.6:Rounding:
+===============
+    ->Math.round=3.7 as 4
+    ->Math.ceil=3.1 as 4 and -3.1 as -3
+    ->Math.floor=3.6 as 3 and -3.6 as -4
+    ->Math.trunc=3.625 as 3
+
+    ->toFixed(n):The method toFixed(n) rounds the number to n digits after the point and returns a string representation of the result.
+
+            let num = 12.34;
+            alert( num.toFixed(1) ); // "12.3" it is string
+
+1.2.7:->isFinite() and isNaN();
+=========================
+->Number.isFinite() and Number.isNaN()// they are strict version which checks the datatypes too.
+1.2.8
+->Object.is(a, b) is the same as a === b.
+
+1.2.9:ParseInt and parseFloat:
+=================================
+
+*.These read the value until they can't
+
+let a=10.25pt;
+
+parseFloat(25.25$)//op:25.25(when $ encountered it can't read so stops); similar for parseInt;
+
+parseFloat(num,radix); 
+->radix is base 2,8,10,16//converts the num to its base like decimal,binary representation.
+
+1.2.10:Other Math functions:
+===========================
+
+->Math.random();
+->Math.min,max,pow;
+
+1.3:Strings:
+===========
+1.3.1.usage of backslash(escape character):
+=============================================
+\\ for single \;
+\' or \" for ' or "
+
+.length= is a property which displays the length of the string
+
+        
+1.3.2.Accessing characters:
+==========================
+
+->str.at(pos);//it also -ve values.
+    e.g:str.at(-1)//last character; str.at(-2) means last before character;
+->str[pos];
+
+*.Strings are immutable
+
+*.toUpperCase();toLowerCase()
+=============================
+
+*.indexOf():
+    let str = 'Widget with id';
+
+    alert( str.indexOf('id', 2) ) // 12
+    indexOf(str,pos);
+*.lastIndexOf(str,pos):
+    ->Searches from the end.
+
+*.includes(str,pos)=>pos is the pos to start the search;
+
+*.startsWith(str) and endsWith(str);
+
+substring:
+==========
+
+*.slice(start, end)->from start to end (not including end)->allows negatives
+
+*.substring(start, end)->between start and end (not including end)->negative values mean 0->start can be greater than end
+
+*.substr(start, length)->from start get length characters->allows negative start
+
+Comparing strings:
+===================
+
+*.codePointAt(0)=>displays the decimal number for any character
+
+*.fromCodePoint(90)=>z 
+
+*.localeCompare():
+    The call str.localeCompare(str2) returns an integer indicating whether str is less, equal or greater than str2 according to the language rules:
+
+    Returns a negative number if str is less than str2.
+    Returns a positive number if str is greater than str2.
+    Returns 0 if they are equivalent.
+
+5.4:Array:
+==========
+
+->arr.at(-1):displays the last element;
+
+=>arr.shift()=>Removes the first element of Array
+=>arr.push()=>adds the element at the end
+this can be used for queue...
+
+=>arr.pop()=>Removes the element from the end
+
+=>arr.unshift()=>Adds element to the front of Array
+
+=>Push and unshift can add multiple elements at once;
+
+=>Array is an object so that's why arr[0] works.
+
+=>push and pop is fast, shift and unshift are slow.
+
+=>for..of loop in array,
+
+=>we can truncate the array by reducing the arr.length;
+
+=>Don't compare array with == or ===. compare by item by items.
+
+5.5 Array methods:
+==================
+
+=>arr.push()
+=>arr.pop()
+=>arr.shift()
+=>arr.unshift()
+
+delete an element in array:
+
+=>arr.splice:is used for deletion,insertion in array;
+
+=>arr.splice(startpos,deleteCount,insertVals);
+
+E.g:
+Deletion:
+let arr = ["I", "study", "JavaScript", "right", "now"];
+
+// remove 3 first elements and replace them with another
+arr.splice(0, 3, "Let's", "dance");
+
+alert( arr ) // now ["Let's", "dance", "right", "now"]
+Insertion:
+1.let arr = ["I", "study", "JavaScript"];
+
+// from index 2
+// delete 0
+// then insert "complex" and "language"
+arr.splice(2, 0, "complex", "language");
+
+alert( arr ); // "I", "study", "complex", "language", "JavaScript"
+
+=>arr.slice
+=>arr.concat(arguments..arr..value);
+
+=>foreach in array:
+arr.forEach(function(item, index, array) {
+  // ... do something with item
+});
+
+Searching in array:
+==================
+
+=>arr.indexOf,lastIndexOf,includes.
+
+=>arr.find(fn):
+let result = arr.find(function(item, index, array) {
+  // if true is returned, item is returned and iteration is stopped
+  // for falsy scenario returns undefined
+});
+
+Eg:let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"}
+];
+
+let user = users.find(item => item.id == 1);
+
+alert(user.name); // John
+
+
+=>arr.findIndex(fn);//returns index or -1
+
+=>arr.findLastIndex(fn);//returns last index
+
+=>arr.filter(fn);
+e.g:
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"}
+];
+
+// returns array of the first two users
+let someUsers = users.filter(item => item.id < 3);
+
+alert(someUsers.length); // 2
+
+arr.map:
+========
+It calls the function for each element of the array and return the array of results.
+
+E.g:
+let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
+alert(lengths); // 5,7,6
+
+map(callbackfn: (value: number, index: number, array: number[]) => any, thisArg?: any): any[]
+A function that accepts up to three arguments. The map method calls the callbackfn function one time for each element in the array.
+
+
+Calls a defined callback function on each element of an array, and returns an array that contains the results.
+
+=>map(callbackfn: (value: number, index: number, array: number[]) => any, thisArg?: any): any[]
+A function that accepts up to three arguments. The map method calls the callbackfn function one time for each element in the array.
+=>Calls a defined callback function on each element of an array, and returns an array that contains the results.
+
+arr.sort():
+============
+
+=>default sort is alphabet sort(lexicographic);
+
+function compareNumeric(a, b) {
+  if (a > b) return 1;
+  if (a == b) return 0;
+  if (a < b) return -1;
+}
+
+let arr = [ 1, 2, 15 ];
+
+arr.sort(compareNumeric);
+
+alert(arr); 
+
+=>arr.reverse():reverses the array;
+
+*.arr.split(delim):it is used to split a string or something based on the delimitor.
+
+*.arr.join(adder):It is opposite to split;
+
+=>arr.reduce(accumulator,item,index,array):
+same as map where each val calls a fn but the results ar added to accumulator for each time.
+
+Eg:
+let arr=[1,2,3,4,5];
+let r=arr.reduce((sum,curr)=>{
+    return sum+=curr;
+},0)
+console.log(r);
+
+op:15
+
+=>arr.reduceRight(): same as reduce but goes from right to left.
+
+.isArray():checks whether it is array or not;
+
+=>arr.some()//checks for first truthy(||);
+
+=>arr.every()//checks for first falsey(&&);
+
+=>arr.fill(value, start, end);
+
+=>The copyWithin() method of Array instances shallow copies part of this array to another location in the same array and returns this array without modifying its length.
+
