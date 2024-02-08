@@ -2,3 +2,14 @@ This is day - 8  = 7/2/24
 
 1.Array in js
 2.Array methods
+3.Object
+4.Object references and copying
+5.Garbage Collection
+6.Polyfills and transpilers
+7.Automated testing with Mocha
+8.Debugging in the browser
+9.Object methods,this
+10.constructor, operator"new"
+11.optional chaining'?'
+12.Symbol type
+13.Object to Primitive conversion

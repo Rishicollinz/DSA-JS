@@ -1,0 +1,12 @@
+{
+  "name": "day8",
+  "version": "1.0.0",
+  "description": "This is day - 8  = 7/2/24",
+  "main": "a.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type":"module"
+}

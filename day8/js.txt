@@ -1,3 +1,251 @@
+3.5:Automated testing-7/2/24
+=====================
+Automated testing means that tests are written separately, in addition to the code. They run our functions in various ways and compare results with the expected.
+
+=>Behavior Driven Development:
+===================
+
+Three things: test,documentation and examples.
+
+1.Creation of spec:
+like this function is for what, what it does and expected output;
+
+E.g:
+describe("pow", function() {
+
+  it("raises to n-th power", function() {
+    assert.equal(pow(2, 3), 8);
+  });
+
+});
+
+Explanation:
+describe("title", function() { ... })
+it("use case description", function() { ... })
+assert.equal(value1, value2)
+
+
+2.Mocha:
+========
+ the core framework: it provides common testing functions including describe and it and the main function that runs tests.
+
+ before()=>to display before test;
+ after()=>after test display;
+
+ beforeEach()=>display before every it.
+ afterEach()=>display after every it.
+
+3.Chai:=for assertions.
+========
+
+
+4.1:Object:=7/2/24
+===========
+
+=> key can't be keywords.This is known as property names limitations.
+
+property existence test,in:
+==========================
+
+=>we can whether a object has a specific prop(key);
+
+syntax:"key" in object
+
+for...in loop:
+=============
+for (key in object) {
+  // executes the body for each key among object properties
+}
+
+Order in objects:
+=================
+
+->if property(keys) in obj are ints, then they are sorted otherwise like string they are in creation order;
+
+
+4.2:Object references and copying:
+=================================
+
+let a={an obj};
+let b=a;
+
+=>Here,b is not a new one, it links the a's reference.
+=>Any change here will change the original.
+
+here a==b because of same reference or memory.
+
+let a={},b={};
+here a!==b(bcoz both are different objects);
+
+=>Const objects can be modified.
+
+copying:creates an extra reference to the same obj;
+
+cloning:
+========
+->Naive method(for...each)
+
+=>Object.assign(dest,source1,source2);
+
+eg:
+let user = {
+    name: "John",
+    age: 30
+};
+
+let clone = {}; // the new empty object
+
+Object.assign(clone,user);
+clone.name="rishi";
+console.log(user);
+console.log(clone);
+
+output:
+
+{ name: 'John', age: 30 }
+{ name: 'rishi', age: 30 }
+
+*.Structured clone:
+To fix that and make user and clone truly separate objects, we should use a cloning loop that examines each value of user[key] and, if it’s an object, then replicate its structure as well. That is called a “deep cloning” or “structured cloning”. There’s structuredClone method that implements deep cloning.
+
+let user = {
+  name: "John",
+  sizes: {
+    height: 182,
+    width: 50
+  }
+};
+
+let clone = structuredClone(user);
+
+alert( user.sizes === clone.sizes ); // false, different objects
+
+// user and clone are totally unrelated now
+user.sizes.width = 60;    // change a property from one place
+alert(clone.sizes.width); // 50, not related
+
+4.3:Garbage Collection:
+=======================
+=>If a variable isn't reachable, then this will junk the data and frees the memory;
+
+*.Unreachable island
+
+*.The basic garbage collection algorithm is called "mark and sweep";
+
+*.Mark and sweep:
+like parent node -> Child node -> leaf node(in a loop);
+
+*.when there is no leaf to mark, it checks for reachability and removes the unreachable codes.
+
+optimizations:
+->Generational Collection:new and old elements.
+
+->Incremental Collection:
+big code->spilt to small module code->many garbage collection. to reduce delay
+
+->Idle time collection: garbage collection runs only when the cpu is idle.
+
+4.4:Object methods,"this"
+===========================
+
+=>this keyword:
+===============
+
+let user = {
+  name: "John",
+  age: 30,
+
+  sayHi() {
+    // "this" is the "current object"
+    alert(this.name);
+  }
+
+};
+
+user.sayHi(); // John
+=>this is used to access values from the same class like block.
+
+=>this is not bound:
+e.g:
+function sayHi() {
+  alert( this.name );
+}
+
+it can run based on the context of the calling obj;
+
+=>Arrow functions don't have this.
+
+
+4.5:Constructor, operator"new":
+=================
+Eg:
+function User(name) {
+  this.name = name;
+  this.isAdmin = false;
+}
+
+let user = new User("Jack");
+
+alert(user.name); // Jack
+alert(user.isAdmin); // false
+
+Def:
+The regular {...} syntax allows us to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
+
+That can be done using constructor functions and the "new" operator.
+
+
+constructor function:
+=====================
+
+Optional chaining:
+==================
+The optional chaining ?. stops the evaluation if the value before ?. is undefined or null and returns undefined.
+let user = {}; // user has no address
+
+alert( user?.address?.street );
+
+Symbol type:
+=============
+->A object can have symbol or string as keys.
+->It is a unique identifier;
+
+let id=Symbol();
+
+->It is always unique;
+
+usage ex:
+let user = { // belongs to another code
+  name: "John"
+};
+
+let id = Symbol("id");
+
+user[id] = 1;
+
+alert( user[id] ); // we can
+
+
+->Instead of using the id as string and defining. it will be added to user obj and can be accessed everywhere but symbol can't be accessed by others.
+
+=>Symbols are skipped by for...in loop.
+
+=>Symbol.for("id")=>if there is already a symbol, it is used but if there is not, it is created.
+
+Object to primitive conversion:
+====================
+hints:
+    ->number
+    ->String
+    ->default
+
+*.[Symbol.toPrimitive]
+
+*.toString/valueOf
+
+
+
+
 1.Datatypes:=6/2/24
 ============
 
@@ -297,3 +545,9 @@ op:15
 
 =>The copyWithin() method of Array instances shallow copies part of this array to another location in the same array and returns this array without modifying its length.
 
+5.6:Iterables=7/2/24
+=====================
+
+*.Symbol.iterator;
+*.String is iterable;
+*.
