@@ -1321,3 +1321,69 @@ class User{
 
 *.If a function extends another function and doesn't have its own constructor, it uses super(parent) constructor.
 
+*.we can override the class field too.
+
+*.if a sub class extends the parent class.subclass has class field and has no constructor. so when the constructor goes to parent class due to super. the class field in the parent class is used not one in the sub class.
+
+
+9.3:static properties and methods:
+==================================
+
+we can assign a method to class as a whole. such model is called as static model.
+
+->static methods can't be called for individual objects.
+article.createTodays()//will cause error.
+
+applications:
+->It is used to create,sort,delete and so on.
+
+->Static property are also possible.
+e.g:
+lass Article {
+  static publisher = "Ilya Kantor";
+}
+
+alert( Article.publisher );
+
+=>In static , when a sub class extends a super class, while calling the static method of super, we can directly use the sub class. Because static methods are naturally inherited.
+
+E.g:
+
+class Animal {
+  static planet = "Earth";
+
+  constructor(name, speed) {
+    this.speed = speed;
+    this.name = name;
+  }
+
+  run(speed = 0) {
+    this.speed += speed;
+    alert(`${this.name} runs with speed ${this.speed}.`);
+  }
+
+  static compare(animalA, animalB) {
+    return animalA.speed - animalB.speed;
+  }
+
+}
+
+// Inherit from Animal
+class Rabbit extends Animal {
+  hide() {
+    alert(`${this.name} hides!`);
+  }
+}
+
+let rabbits = [
+  new Rabbit("White Rabbit", 10),
+  new Rabbit("Black Rabbit", 5)
+];
+
+rabbits.sort(Rabbit.compare);
+
+rabbits[0].run(); // Black Rabbit runs with speed 5.
+
+alert(Rabbit.planet); // Earth
+
+9.4:Private and protected properties and methods:
