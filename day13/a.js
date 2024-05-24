@@ -1,7 +1,3 @@
-let a={
-    0:"string",
-    1:"name",
-    length:2
+export function goodN(){
+    console.log("good");
 }
-
-Object.setPrototypeOf(a,Array.prototype);

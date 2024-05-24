@@ -1,4 +1,9 @@
-let names = ['iliakan', 'remy', 'jeresig'];
+async function f() {
+    let response = await fetch('https://www.instagram.com');
+    console.log(response.statusText);
+}
 
-let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
-
+// f() becomes a rejected promise
+f().catch((err)=>{
+    console.log(err.message);
+})

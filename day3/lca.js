@@ -89,4 +89,4 @@ bst1.insert(160);
 bst1.insert(190);
 bst1.insert(45);
 bst1.insert(145);
-bst1.lca(140,190);
+bst1.lca(20,30);

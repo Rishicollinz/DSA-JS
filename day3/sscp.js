@@ -1,4 +1,5 @@
 //this for sum of single child parent node
+//sum
 class Node {
     constructor(key) {
         this.key = key;
@@ -10,7 +11,7 @@ class Node {
 class Bst {
     constructor() {
         this.root = null;
-        this.arr=[]
+        this.arr=[];
     }
     path(node=null){
         let current;
